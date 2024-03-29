@@ -1,0 +1,16 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        string name = "Aleksey";
+        byte age = 21;
+        long somethingLong = 324201513258912121;
+        bool isBoolean = true;
+        float pi = 3.14f;
+        char space = ' ';
+        int positionX = 0;
+        float positionY = 0.5f;
+        string gameObject1 = "Audi Le Mans";
+        string gameObject2 = "Dodge Viper SRT";
+    }
+}
