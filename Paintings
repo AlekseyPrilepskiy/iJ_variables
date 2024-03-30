@@ -1,0 +1,12 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.Write("Введите число картинок: ");
+        int paintings = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Сколько кртинок будет в одном ряду?: ");
+        int rows = Convert.ToInt32(Console.ReadLine());
+       
+        Console.WriteLine($"Число ваших рядов {paintings/rows}. Осталось {paintings%rows} невошедших картинок");
+    }
+}
