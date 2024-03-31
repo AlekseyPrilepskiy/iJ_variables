@@ -7,9 +7,9 @@ internal class Program
         Console.Write("Сколько кртинок будет в одном ряду?: ");
         int paintingsInRow = Convert.ToInt32(Console.ReadLine());
 
-        int rows = paintings / paintingsInRow;
-        int excessPaintings = paintings % rows;
+        int rowsOfPaintings = paintings / paintingsInRow;
+        int excessPaintings = paintings % rowsOfPaintings;
 
-        Console.WriteLine($"Число ваших рядов {rows}. Осталось {excessPaintings} невошедших картинок");
+        Console.WriteLine($"Число ваших рядов {rowsOfPaintings}. Осталось {excessPaintings} невошедших картинок");
     }
 }
