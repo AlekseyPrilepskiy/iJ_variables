@@ -4,15 +4,15 @@ internal class Program
     {
         string cupOfTea = "Coffee";
         string cupOfCoffee = "Tea";
-        string replace = " ";
+        string temporaryStorage = " ";
 
         Console.WriteLine($"Кофе: {cupOfCoffee}. Чай: {cupOfTea}.");
         Console.WriteLine("Поменять местами - Press Enter");
         Console.ReadKey();
 
-        replace = cupOfCoffee;
+        temporaryStorage = cupOfCoffee;
         cupOfCoffee = cupOfTea;
-        cupOfTea = replace;
+        cupOfTea = temporaryStorage;
 
         Console.WriteLine($"Кофе: {cupOfCoffee}. Чай: {cupOfTea}.");
     }
