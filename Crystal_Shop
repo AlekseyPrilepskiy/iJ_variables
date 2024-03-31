@@ -1,0 +1,18 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.Write("Сколько у вас золота?: ");
+        int goldInWallet = Convert.ToInt32(Console.ReadLine());
+        int crystalPrice = 15; // 1 crystal = 15 gold
+        Console.Write($"1 кристалл стоит {crystalPrice} золота. Сколько кристаллов ты хочешь купить?: ");
+        int numberOfCrystals = Convert.ToInt32(Console.ReadLine());
+
+        goldInWallet -= crystalPrice * numberOfCrystals;
+
+        Console.WriteLine();
+        Console.WriteLine("Количество кристаллов: " + numberOfCrystals);
+        Console.WriteLine("Осталось золота: " + goldInWallet);
+
+    }
+}
