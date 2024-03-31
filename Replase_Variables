@@ -1,0 +1,19 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        string cupOfTea = "Coffee";
+        string cupOfCoffee = "Tea";
+        string replace = " ";
+
+        Console.WriteLine($"Кофе: {cupOfCoffee}. Чай: {cupOfTea}.");
+        Console.WriteLine("Поменять местами - Press Enter");
+        Console.ReadKey();
+
+        replace = cupOfCoffee;
+        cupOfCoffee = cupOfTea;
+        cupOfTea = replace;
+
+        Console.WriteLine($"Кофе: {cupOfCoffee}. Чай: {cupOfTea}.");
+    }
+}
