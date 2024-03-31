@@ -1,0 +1,16 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.Write("Сколько людей в очереди?: ");
+        int peopleInQueue = Convert.ToInt32(Console.ReadLine());
+        int receptionTime = 10; // 1 people = 10 minutes
+        int minutesInHour = 60; // 1 hour = 60 minutes
+        
+        int waitingTimeInMinutes = peopleInQueue * receptionTime;
+        int waitingHours = waitingTimeInMinutes / minutesInHour;
+        int waitingMinutes = waitingTimeInMinutes % minutesInHour;
+
+        Console.WriteLine($"Вам осталось ждать {waitingHours} часов и {waitingMinutes} минут.");
+    }
+}
