@@ -4,8 +4,9 @@ internal class Program
     {
         Console.Write("Введите сообщение: ");
         string message = Console.ReadLine();
+        string stopWord = "exit";
 
-        while (message != "exit") 
+        while (message != stopWord) 
         {
             Console.WriteLine(message);
             message = Console.ReadLine();
