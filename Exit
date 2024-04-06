@@ -1,0 +1,16 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.Write("Введите сообщение: ");
+        string message = Console.ReadLine();
+
+        while (message != "exit") 
+        {
+            Console.WriteLine(message);
+            message = Console.ReadLine();
+        }
+
+        Console.WriteLine("Програма завершена");
+    }
+}
