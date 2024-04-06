@@ -1,0 +1,15 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.Write("Введите сообщение: ");
+        string message = Console.ReadLine();
+        Console.Write("Введите количество повторений: ");
+        int numberOfRepeats = Convert.ToInt32(Console.ReadLine());
+
+        for (int i = 0; i < numberOfRepeats; i++)
+        {
+            Console.WriteLine(message);
+        }
+    }
+}
