@@ -7,7 +7,7 @@ internal class Program
         int startValue = 5;
         int step = 7;
 
-        for (int num = startValue;  num < maxValue; num += step) // Цикл for, потому что есть четкие границы цикла
-            Console.WriteLine(num);
+        for (int number = startValue; number < maxValue; number += step) // Цикл for, потому что есть четкие границы цикла
+            Console.WriteLine(number);
     }
 }
