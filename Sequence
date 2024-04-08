@@ -1,0 +1,13 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.Write("Введите максимальное значение: ");
+        int maxValue = Convert.ToInt32(Console.ReadLine());
+        int startValue = 5;
+        int step = 7;
+
+        for (int num = startValue;  num < maxValue; num += step) // Цикл for, потому что есть четкие границы цикла
+            Console.WriteLine(num);
+    }
+}
