@@ -2,15 +2,23 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        Console.Write("Введите стартовое число диапозона: ");
+        int randomMinimum = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Введите последнее число диапозона: ");
+        int randomMaximum = Convert.ToInt32(Console.ReadLine());
         Random random = new Random();
-        int number = random.Next(1, 101);
+        int number = random.Next(randomMinimum, randomMaximum);
+        Console.WriteLine("Число number: " + number);
         int sum = 0;
+        int remainderOfDivision3 = 3;
+        int remainderOfDivision5 = 5;
 
         for (int i = 1; i <= number; i++)
         {
-            if (i % 3 == 0 || i % 5 == 0)
+            if (i % remainderOfDivision3 == 0 || i % remainderOfDivision5 == 0)
                 sum += i;
         }
-        Console.WriteLine(sum);
+
+        Console.WriteLine("Сумма чисел кратных 3 и 5: " + sum);
     }
 }
