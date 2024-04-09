@@ -10,12 +10,12 @@ internal class Program
         int number = random.Next(randomMinimum, randomMaximum);
         Console.WriteLine("Число number: " + number);
         int sum = 0;
-        int remainderOfDivision3 = 3;
-        int remainderOfDivision5 = 5;
+        int remainderOfDivision1 = 3;
+        int remainderOfDivision2 = 5;
 
         for (int i = 1; i <= number; i++)
         {
-            if (i % remainderOfDivision3 == 0 || i % remainderOfDivision5 == 0)
+            if (i % remainderOfDivision1 == 0 || i % remainderOfDivision2 == 0)
                 sum += i;
         }
 
