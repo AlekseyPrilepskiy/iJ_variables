@@ -59,7 +59,6 @@ internal class Program
                         Console.WriteLine("Жарко");
                     else
                         Console.WriteLine("Очень жарко");
-
                     break;
 
                 case CommandRandomNumber:
