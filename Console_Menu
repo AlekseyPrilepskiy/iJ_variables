@@ -2,68 +2,92 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        const string PersonalInformation = "1";
+        const string Weather = "2";
+        const string RandomNumber = "3";
+        const string ClearConsole = "4";
+        const string Exit = "5";
+
+        bool programExit = false;
+
+        int temperature1 = -15;
+        int temperature2 = 5;
+        int temperature3 = 15;
+        int temperature4 = 20;
+        int temperature5 = 30;
+
         Console.WriteLine("Добро пожаловать!");
         Console.WriteLine("Для старта нажмите Enter.");
         Console.ReadKey();
-        bool programExit = false;
-        const string Command1 = "1";
-        const string Command2 = "2";
-        const string Command3 = "3";
-        const string Command4 = "4";
-        const string Command5 = "5";
 
         while (programExit == false)
         {
-            Console.WriteLine("1 - Вывод информации о себе.");
-            Console.WriteLine("2 - Вывод информации о погоде.");
-            Console.WriteLine("3 - Вывод случайного числа.");
-            Console.WriteLine("4 - Очистить консоль.");
-            Console.WriteLine("5 - Выход из программы.");
+            Console.WriteLine($"{PersonalInformation} - Вывод информации о себе.");
+            Console.WriteLine($"{Weather} - Вывод информации о погоде.");
+            Console.WriteLine($"{RandomNumber} - Вывод случайного числа.");
+            Console.WriteLine($"{ClearConsole} - Очистить консоль.");
+            Console.WriteLine($"{Exit} - Выход из программы.");
+
             Console.Write("Введите команду: ");
             string inputCommand = Console.ReadLine();
 
             switch (inputCommand) 
             {
-                case Command1:
+                case PersonalInformation:
                     Console.Write("Введите ваше имя: ");
                     string name = Console.ReadLine();
+
                     Console.Write("Введите ваш возраст: ");
                     int age = Convert.ToInt32(Console.ReadLine());
+
                     Console.WriteLine($"Вас зовут {name}, вам {age} лет.");
                     break;
-                case Command2:
-                    Console.Write("Сколько градусов на улице? ");
-                    int temperature = Convert.ToInt32(Console.ReadLine());
 
-                    if (temperature <= -15)
+                case Weather:
+                    Console.Write("Сколько градусов на улице? ");
+                    int inputTemperature = Convert.ToInt32(Console.ReadLine());
+
+                    if (inputTemperature <= temperature1)
                         Console.WriteLine("Очень холодно");
-                    else if (temperature > -15 &&  temperature <= 5)
+
+                    else if (inputTemperature > temperature1 && inputTemperature <= temperature2)
                         Console.WriteLine("Холодно");
-                    else if (temperature > 5 &&  temperature <= 15)
+
+                    else if (inputTemperature > temperature2 && inputTemperature <= temperature3)
                         Console.WriteLine("Прохладно");
-                    else if (temperature > 15 && temperature <= 20)
+
+                    else if (inputTemperature > temperature3 && inputTemperature <= temperature4)
                         Console.WriteLine("Тепло");
-                    else if (temperature > 20 && temperature <= 29)
+
+                    else if (inputTemperature > temperature4 && inputTemperature <= temperature5)
                         Console.WriteLine("Жарко");
+
                     else
                         Console.WriteLine("Очень жарко");
+
                     break;
-                case Command3:
-                    Random rand = new Random();
-                    int number = rand.Next();
+
+                case RandomNumber:
+                    Random random = new Random();
+                    int number = random.Next();
+
                     Console.WriteLine(number);
                     break;
-                case Command4:
+
+                case ClearConsole:
                     Console.Clear();
                     break;
-                case Command5:
+
+                case Exit:
                     programExit = true;
                     break;
+
                 default:
                     Console.WriteLine("Несуществующая команда.");
                     Console.WriteLine("Попробуйте снова.");
                     break;
             }
+
             Console.WriteLine();
         }
     }
