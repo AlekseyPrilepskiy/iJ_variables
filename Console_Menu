@@ -1,0 +1,70 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.WriteLine("Добро пожаловать!");
+        Console.WriteLine("Для старта нажмите Enter.");
+        Console.ReadKey();
+        bool programExit = false;
+        const string Command1 = "1";
+        const string Command2 = "2";
+        const string Command3 = "3";
+        const string Command4 = "4";
+        const string Command5 = "5";
+
+        while (programExit == false)
+        {
+            Console.WriteLine("1 - Вывод информации о себе.");
+            Console.WriteLine("2 - Вывод информации о погоде.");
+            Console.WriteLine("3 - Вывод случайного числа.");
+            Console.WriteLine("4 - Очистить консоль.");
+            Console.WriteLine("5 - Выход из программы.");
+            Console.Write("Введите команду: ");
+            string inputCommand = Console.ReadLine();
+
+            switch (inputCommand) 
+            {
+                case Command1:
+                    Console.Write("Введите ваше имя: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Введите ваш возраст: ");
+                    int age = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine($"Вас зовут {name}, вам {age} лет.");
+                    break;
+                case Command2:
+                    Console.Write("Сколько градусов на улице? ");
+                    int temperature = Convert.ToInt32(Console.ReadLine());
+
+                    if (temperature <= -15)
+                        Console.WriteLine("Очень холодно");
+                    else if (temperature > -15 &&  temperature <= 5)
+                        Console.WriteLine("Холодно");
+                    else if (temperature > 5 &&  temperature <= 15)
+                        Console.WriteLine("Прохладно");
+                    else if (temperature > 15 && temperature <= 20)
+                        Console.WriteLine("Тепло");
+                    else if (temperature > 20 && temperature <= 29)
+                        Console.WriteLine("Жарко");
+                    else
+                        Console.WriteLine("Очень жарко");
+                    break;
+                case Command3:
+                    Random rand = new Random();
+                    int number = rand.Next();
+                    Console.WriteLine(number);
+                    break;
+                case Command4:
+                    Console.Clear();
+                    break;
+                case Command5:
+                    programExit = true;
+                    break;
+                default:
+                    Console.WriteLine("Несуществующая команда.");
+                    Console.WriteLine("Попробуйте снова.");
+                    break;
+            }
+            Console.WriteLine();
+        }
+    }
+}
