@@ -1,6 +1,21 @@
 internal class Program
 {
-    private static void Main(string[] args)
+    public static void ToExchangeMoney(ref float outputWallet, ref float inputWallet, float exchangeRate)
+    {
+        float amountOfExchange = Convert.ToSingle(Console.ReadLine());
+
+        if (amountOfExchange <= outputWallet)
+        {
+            outputWallet -= amountOfExchange;
+            inputWallet += amountOfExchange * exchangeRate;
+        }
+        else
+        {
+            Console.WriteLine("Недостаточно средств.");
+        }
+    }
+
+    public static void Main(string[] args)
     {
         const string CommandChangeRubelsOnDollars = "1";
         const string CommandChangeRubelsOnEuro = "2";
@@ -15,9 +30,9 @@ internal class Program
         const string CommandAddDollars = "2";
         const string CommandAddEuro = "3";
 
-        float rubToUsd = 93f;
-        float rubToEur = 99f;
-        float usdToRub = 95f;
+        float rubToUsd = 0.011f;
+        float rubToEur = 0.01f;
+        float usdToRub = 93f;
         float usdToEur = 1.15f;
         float eurToRub = 101f;
         float eurToUsd = 0.85f;
@@ -25,7 +40,6 @@ internal class Program
         float rubelsInWallet = 0;
         float dollarsInWallet = 0;
         float euroInWallet = 0;
-        float amountOfExchange;
         float addedMoney;
 
         string inputMenuCommand;
@@ -58,7 +72,9 @@ internal class Program
                 Console.WriteLine("Попробуйте снова.");
             }
             else
+            {
                 isCorrectBalanse = true;
+            }
         }
 
         while (isProgramWork)
@@ -80,97 +96,43 @@ internal class Program
                 case CommandChangeRubelsOnDollars:
                     Console.WriteLine("Обмен рублей на доллары.");
                     Console.Write("Сколько рублей вы хотите обменять? ");
-                    amountOfExchange = Convert.ToSingle(Console.ReadLine());
 
-                    if (amountOfExchange <= rubelsInWallet)
-                    {
-                        rubelsInWallet -= amountOfExchange;
-                        dollarsInWallet += amountOfExchange / rubToUsd;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Недостаточно средств.");
-                    }
+                    ToExchangeMoney(ref rubelsInWallet, ref dollarsInWallet, rubToUsd);
                     break;
 
                 case CommandChangeRubelsOnEuro:
                     Console.WriteLine("Обмен рублей на евро.");
                     Console.Write("Сколько рублей вы хотите обменять? ");
-                    amountOfExchange = Convert.ToSingle(Console.ReadLine());
 
-                    if (amountOfExchange <= rubelsInWallet)
-                    {
-                        rubelsInWallet -= amountOfExchange;
-                        euroInWallet += amountOfExchange / rubToEur;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Недостаточно средств.");
-                    }
+                    ToExchangeMoney(ref rubelsInWallet, ref euroInWallet, rubToEur);
                     break;
 
                 case CommandChangeDollarsOnRubels:
                     Console.WriteLine("Обмен долларов на рубли.");
                     Console.Write("Сколько долларов вы хотите обменять? ");
-                    amountOfExchange = Convert.ToSingle(Console.ReadLine());
 
-                    if (amountOfExchange <= dollarsInWallet)
-                    {
-                        dollarsInWallet -= amountOfExchange;
-                        rubelsInWallet += amountOfExchange * usdToRub;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Недостаточно средств.");
-                    }
+                    ToExchangeMoney(ref dollarsInWallet, ref rubelsInWallet, usdToRub);
                     break;
 
                 case CommandChangeDollarsOnEuro:
                     Console.WriteLine("Обмен долларов на евро.");
                     Console.Write("Сколько долларов вы хотите обменять? ");
-                    amountOfExchange = Convert.ToSingle(Console.ReadLine());
 
-                    if (amountOfExchange <= dollarsInWallet)
-                    {
-                        dollarsInWallet -= amountOfExchange;
-                        euroInWallet += amountOfExchange * usdToEur;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Недостаточно средств.");
-                    }
+                    ToExchangeMoney(ref dollarsInWallet, ref euroInWallet, usdToEur);
                     break;
 
                 case CommandChangeEuroOnRubels:
                     Console.WriteLine("Обмен евро на рубли.");
                     Console.Write("Сколько евро вы хотите обменять? ");
-                    amountOfExchange = Convert.ToSingle(Console.ReadLine());
 
-                    if (amountOfExchange <= euroInWallet)
-                    {
-                        euroInWallet -= amountOfExchange;
-                        rubelsInWallet += amountOfExchange * eurToRub;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Недостаточно средств.");
-                    }
+                    ToExchangeMoney(ref euroInWallet, ref rubelsInWallet, eurToRub);
                     break;
 
                 case CommandChangeEuroOnDollars:
-                    Console.WriteLine("Обмен евро на рубли.");
+                    Console.WriteLine("Обмен евро на доллары.");
                     Console.Write("Сколько евро вы хотите обменять? ");
-                    amountOfExchange = Convert.ToSingle(Console.ReadLine());
 
-                    if (amountOfExchange <= euroInWallet)
-                    {
-                        euroInWallet -= amountOfExchange;
-                        dollarsInWallet += amountOfExchange * eurToUsd;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Недостаточно средств.");
-                    }
+                    ToExchangeMoney(ref euroInWallet, ref dollarsInWallet, eurToUsd);
                     break;
 
                 case CommandAddMoney:
