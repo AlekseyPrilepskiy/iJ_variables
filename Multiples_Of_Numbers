@@ -1,0 +1,28 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        int lowerNumberRange = 0;
+        int upperNumberRange = 25;
+        int minimumOutputRange = 50;
+        int maximumOutputRange = 150;
+        int sumOfSequence = 0;
+        int numberOfMultiplesInRange = 0;
+
+        Random randomNumber = new Random();
+        int number = randomNumber.Next(lowerNumberRange, upperNumberRange + 1);
+        Console.WriteLine($"Число: {number}");
+
+        while (sumOfSequence <= maximumOutputRange)
+        {
+            if (sumOfSequence >= minimumOutputRange)
+            {
+                numberOfMultiplesInRange++;
+            }
+
+            sumOfSequence += number;
+        }
+
+        Console.WriteLine($"В диапозоне от {minimumOutputRange} до {maximumOutputRange} количество чисел, кратных {number} равно: {numberOfMultiplesInRange}");
+    }
+}
