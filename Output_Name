@@ -8,28 +8,18 @@ internal class Program
         Console.Write("Введите имя: ");
         string name = Console.ReadLine();
 
-        int borderLength = name.Length + 2;
-        int lines = 3;
-        int endOfLines = 0;
-        int secondLine = 2;
+        string nameLine = symbol + name + symbol;
+        string symbolLine = "";
 
-        while (lines > endOfLines)
+        int nameLineLength = nameLine.Length;
+
+        for (int i = 0; i < nameLineLength; i++)
         {
-            if (lines != secondLine)
-            {
-                for (int i = 0; i < borderLength; i++)
-                {
-                    Console.Write(symbol);
-                }
-            }
-            else
-            {
-                Console.Write(symbol + name + symbol);
-            }
-
-            Console.WriteLine();
-
-            lines--;
+            symbolLine += symbol;
         }
+
+        Console.WriteLine(symbolLine);
+        Console.WriteLine(nameLine);
+        Console.WriteLine(symbolLine);
     }
 }
