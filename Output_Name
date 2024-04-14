@@ -3,7 +3,7 @@ internal class Program
     private static void Main(string[] args)
     {
         Console.Write("Введите  символ: ");
-        char symbol = Convert.ToChar(Console.ReadLine());
+        char symbol = Console.ReadKey(true).KeyChar;
 
         Console.Write("Введите имя: ");
         string name = Console.ReadLine();
