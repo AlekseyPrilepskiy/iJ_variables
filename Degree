@@ -1,0 +1,29 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        int minimalRandomNumber = 1;
+        int maximumRandomNumber = 10000000;
+
+        Random randomNumber = new Random();
+        int number = randomNumber.Next(minimalRandomNumber, maximumRandomNumber);
+        Console.WriteLine($"Число: {number}");
+
+        int minimumDegree = 1;
+        int degree = 2;
+        int degreeCounter = 0;
+        int numberInDegree = 0;
+
+        for (int i = minimumDegree; i <= number; i *= degree)
+        {
+            degreeCounter++;
+            numberInDegree = i;
+        }
+
+        numberInDegree *= degree;
+
+        Console.WriteLine($"Степень двойки: {degreeCounter}");
+
+        Console.WriteLine($"Число в степени {degreeCounter}: {numberInDegree}");
+    }
+}
