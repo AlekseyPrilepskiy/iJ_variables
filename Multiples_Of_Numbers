@@ -13,14 +13,12 @@ internal class Program
         int number = randomNumber.Next(lowerNumberRange, upperNumberRange + 1);
         Console.WriteLine($"Число: {number}");
 
-        while (sumOfSequence <= maximumOutputRange)
+        for (int i = sumOfSequence; i < maximumOutputRange; i += number)
         {
-            if (sumOfSequence >= minimumOutputRange)
+            if (i > minimumOutputRange)
             {
                 numberOfMultiplesInRange++;
             }
-
-            sumOfSequence += number;
         }
 
         Console.WriteLine($"В диапозоне от {minimumOutputRange} до {maximumOutputRange} количество чисел, кратных {number} равно: {numberOfMultiplesInRange}");
