@@ -1,0 +1,181 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        const string CommandNormalAttack = "1";
+        const string CommandFireball = "2";
+        const string CommandImplosionAttack = "3";
+        const string CommandHeal = "4";
+
+        int playerHealth = 100;
+        int playerMaximumHealth = 100;
+        int playerMana = 100;
+        int playerMaximumMana = 100;
+        int playerZeroMana = 0;
+        int playerNormalAttack = 20;
+        int playerFireball = 10;
+        int playerFireballManaCosts = 25;
+        int playerImplosionAttack = 40;
+        int playerOpportunityToHeal = 3;
+        int playerCanNotHeal = 0;
+        int playerHealthReturn = 25;
+        int playerManaReturn = 50;
+
+        string playerMoveCommand;
+
+        bool isFireballWas = false;
+
+        int bossHealth = 200;
+        int bossAttack = 20;
+
+        int queue = 0;
+        int playerMotion = 0;
+        int bossMotion = 1;
+
+        bool isFight = true;
+
+        Console.WriteLine("Вы исследовали подземелье, как вдруг на вашем пути появился босс");
+        Console.WriteLine("Началася бой!");
+        Console.WriteLine($"У вас {playerHealth} здоровья и {playerMana} маны");
+        Console.WriteLine($"У босса {bossHealth} здоровья");
+        Console.WriteLine();
+
+        while (isFight)
+        {
+            if (queue % 2 == playerMotion)
+            {
+                Console.WriteLine("Сейчас ход вашего героя.");
+
+                Console.WriteLine($"{CommandNormalAttack} - обычная атака.");
+                Console.WriteLine($"{CommandFireball} - огненный шар.");
+                Console.WriteLine($"{CommandImplosionAttack} - взрыв (Только если враг горит от огненного шара).");
+                Console.WriteLine($"{CommandHeal} - лечение и восстановление маны.");
+
+                playerMoveCommand = Console.ReadLine();
+                Console.WriteLine();
+
+                switch (playerMoveCommand)
+                {
+                    case CommandNormalAttack:
+                        Console.WriteLine("Обычная атака!");
+
+                        bossHealth -= playerNormalAttack;
+
+                        Console.WriteLine($"Вы нанесли {playerNormalAttack} урона!");
+                        break;
+
+                    case CommandFireball:
+                        if (playerMana > playerZeroMana)
+                        {
+                            Console.WriteLine("Огненный шар!");
+
+                            bossHealth -= playerFireball;
+
+                            playerMana -= playerFireballManaCosts;
+
+                            isFireballWas = true;
+
+                            Console.WriteLine($"Вы нанесли {playerFireball} урона!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Не удалось совершить атаку. Недостаточно маны.");
+                        }
+                        break;
+
+                    case CommandImplosionAttack:
+                        if (isFireballWas == true)
+                        {
+                            Console.WriteLine("Взрыв!");
+
+                            bossHealth -= playerImplosionAttack;
+
+                            isFireballWas = false;
+
+                            Console.WriteLine($"Вы нанесли {playerImplosionAttack} урона!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Не удалось совершить атаку. Не было атаки огненным шаром.");
+                        }
+                        break;
+
+                    case CommandHeal:
+                        if (playerOpportunityToHeal > playerCanNotHeal)
+                        {
+                            playerHealth += playerHealthReturn;
+                            playerMana += playerManaReturn;
+
+                            if (playerHealth > playerMaximumHealth)
+                            {
+                                playerHealth = playerMaximumHealth;
+                            }
+
+                            if (playerMana > playerMaximumMana)
+                            {
+                                playerMana = playerMaximumMana;
+                            }
+
+                            Console.WriteLine($"Вы вылечелись на {playerHealthReturn} здоровья.");
+                            Console.WriteLine($"Восстановлено {playerManaReturn} маны.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Невозможно вылечиться");
+                        }
+                        break;
+
+                    default:
+                        Console.WriteLine("Невозможное действие. Герой зевнул.");
+                        break;
+                }
+            }
+            else if (queue % 2 == bossMotion)
+            {
+                Console.WriteLine("Ход босса.");
+                Console.WriteLine("Нажмите Enter, чтобы приготовиться");
+                Console.ReadKey();
+
+                playerHealth -= bossAttack;
+
+                Console.WriteLine($"Босс нанес вам {bossAttack} урона");
+            }
+
+            if (playerHealth <= 0)
+            {
+                playerHealth = 0;
+                isFight = false;
+            }
+
+            if (bossHealth <= 0) 
+            { 
+                bossHealth = 0;
+                isFight = false;
+            }
+
+            Console.WriteLine("У вас осталось.");
+            Console.WriteLine($"Здоровья: {playerHealth}");
+            Console.WriteLine($"Маны: {playerMana}");
+            Console.WriteLine();
+
+            Console.WriteLine("У босса осталось.");
+            Console.WriteLine($"Здоровья: {bossHealth}");
+            Console.WriteLine();
+
+            queue++;
+        }
+
+        if (playerHealth == 0)
+        {
+            Console.WriteLine("Вы проиграли...");
+        }
+        else if (bossHealth == 0 && playerHealth == 0)
+        {
+            Console.WriteLine("Ничья.");
+        }
+        else
+        {
+            Console.WriteLine("Вы победили!");
+        }
+    }
+}
