@@ -3,11 +3,13 @@ internal class Program
     private static void Main(string[] args)
     {
         int line, column;
-        int counter = 0;
+        int columnCounter = 0;
+        int startPositionCounter = 0;
         int numberFirstColumn = 0;
         int numberSecondLine = 1;
         int sumSecondLine = 0;
         int multiplicationFirstColumn = 1;
+        int shiftLineForUser = 1;
 
         Console.Write("Введите чилсо строк массива: ");
         line = Convert.ToInt32(Console.ReadLine());
@@ -15,37 +17,42 @@ internal class Program
         Console.Write("Введите число столбцов массива: ");
         column = Convert.ToInt32(Console.ReadLine());
 
-        int[,] array = new int[line, column];
+        int[,] arrayOfNumbers = new int[line, column];
 
-        for (int i = 0; i < array.GetLength(0); i++)
+        for (int i = 0; i < arrayOfNumbers.GetLength(0); i++)
         {
-            Console.WriteLine($"Введите строку {i + 1}: ");
+            Console.WriteLine($"Введите строку {i + shiftLineForUser}: ");
 
-            for (int j = 0; j < array.GetLength(1); j++)
+            for (int j = 0; j < arrayOfNumbers.GetLength(1); j++)
             {
-                array[i, j] = Convert.ToInt32(Console.ReadLine());
-                
-                if (j == numberFirstColumn)
-                    multiplicationFirstColumn *= array[i, j];
-
-                if (i == numberSecondLine)
-                    sumSecondLine += array[i, j];
+                arrayOfNumbers[i, j] = Convert.ToInt32(Console.ReadLine());
             }
 
             Console.WriteLine();
         }
         
-        foreach (int i in array)
+        foreach (int i in arrayOfNumbers)
         {
             Console.Write(i + " ");
 
-            counter++;
+            columnCounter++;
 
-            if (counter == column)
+            if (columnCounter == column)
             {
                 Console.WriteLine();
-                counter = 0;
+
+                columnCounter = startPositionCounter;
             }
+        }
+
+        for (int i = 0; i < column; i++)
+        {
+            sumSecondLine += arrayOfNumbers[numberSecondLine, i];
+        }
+        
+        for (int i = 0; i < line; i++)
+        {
+            multiplicationFirstColumn *= arrayOfNumbers[i, numberFirstColumn];
         }
 
         Console.WriteLine($"Произведение первого столбца: {multiplicationFirstColumn}");
