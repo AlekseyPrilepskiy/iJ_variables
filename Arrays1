@@ -2,7 +2,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int line, column;
+        int line;
+        int column;
         int columnCounter = 0;
         int startPositionCounter = 0;
         int numberFirstColumn = 0;
@@ -17,21 +18,21 @@ internal class Program
         Console.Write("Введите число столбцов массива: ");
         column = Convert.ToInt32(Console.ReadLine());
 
-        int[,] arrayOfNumbers = new int[line, column];
+        int[,] numbers = new int[line, column];
 
-        for (int i = 0; i < arrayOfNumbers.GetLength(0); i++)
+        for (int i = 0; i < numbers.GetLength(0); i++)
         {
-            Console.WriteLine($"Введите строку {i + shiftLineForUser}: ");
+            Console.WriteLine($"Введите элементы {i + shiftLineForUser} строки через Enter: ");
 
-            for (int j = 0; j < arrayOfNumbers.GetLength(1); j++)
+            for (int j = 0; j < numbers.GetLength(1); j++)
             {
-                arrayOfNumbers[i, j] = Convert.ToInt32(Console.ReadLine());
+                numbers[i, j] = Convert.ToInt32(Console.ReadLine());
             }
 
             Console.WriteLine();
         }
         
-        foreach (int i in arrayOfNumbers)
+        foreach (int i in numbers)
         {
             Console.Write(i + " ");
 
@@ -47,15 +48,16 @@ internal class Program
 
         for (int i = 0; i < column; i++)
         {
-            sumSecondLine += arrayOfNumbers[numberSecondLine, i];
+            sumSecondLine += numbers[numberSecondLine, i];
         }
+
+        Console.WriteLine($"Сумма второй линии: {sumSecondLine}");
         
         for (int i = 0; i < line; i++)
         {
-            multiplicationFirstColumn *= arrayOfNumbers[i, numberFirstColumn];
+            multiplicationFirstColumn *= numbers[i, numberFirstColumn];
         }
 
         Console.WriteLine($"Произведение первого столбца: {multiplicationFirstColumn}");
-        Console.WriteLine($"Сумма второй линии: {sumSecondLine}");
     }
 }
