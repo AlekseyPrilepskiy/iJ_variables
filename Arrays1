@@ -4,13 +4,10 @@ internal class Program
     {
         int line;
         int column;
-        int columnCounter = 0;
-        int startPositionCounter = 0;
-        int numberFirstColumn = 0;
-        int numberSecondLine = 1;
-        int sumSecondLine = 0;
-        int multiplicationFirstColumn = 1;
-        int shiftLineForUser = 1;
+        int userLine;
+        int userColumn;
+        int sumUserLine = 0;
+        int multiplicationUserColumn = 1;
 
         Console.Write("Введите чилсо строк массива: ");
         line = Convert.ToInt32(Console.ReadLine());
@@ -20,44 +17,50 @@ internal class Program
 
         int[,] numbers = new int[line, column];
 
-        for (int i = 0; i < numbers.GetLength(0); i++)
+        for (int i = 1; i <= numbers.GetLength(0); i++)
         {
-            Console.WriteLine($"Введите элементы {i + shiftLineForUser} строки через Enter: ");
+            Console.WriteLine($"Введите элементы {i} строки через Enter: ");
 
-            for (int j = 0; j < numbers.GetLength(1); j++)
+            for (int j = 1; j <= numbers.GetLength(1); j++)
             {
-                numbers[i, j] = Convert.ToInt32(Console.ReadLine());
+                numbers[i - 1, j - 1] = Convert.ToInt32(Console.ReadLine());
             }
 
             Console.WriteLine();
         }
         
-        foreach (int i in numbers)
+        for (int i = 0; i < numbers.GetLength(0); i++)
         {
-            Console.Write(i + " ");
-
-            columnCounter++;
-
-            if (columnCounter == column)
+            for (int j = 0; j < numbers.GetLength(1); j++)
             {
-                Console.WriteLine();
-
-                columnCounter = startPositionCounter;
+                Console.Write($"{numbers[i, j]} ");
             }
+
+            Console.WriteLine();
         }
+
+        Console.Write("Сумму какой строки вывести? ");
+        userLine = Convert.ToInt32(Console.ReadLine()) - 1;
 
         for (int i = 0; i < column; i++)
         {
-            sumSecondLine += numbers[numberSecondLine, i];
+            sumUserLine += numbers[userLine, i];
         }
 
-        Console.WriteLine($"Сумма второй линии: {sumSecondLine}");
-        
+        userLine++;
+
+        Console.WriteLine($"Сумма {userLine} строки: {sumUserLine}");
+
+        Console.Write("Произведение какого столбца вывести? ");
+        userColumn = Convert.ToInt32(Console.ReadLine()) - 1;
+
         for (int i = 0; i < line; i++)
         {
-            multiplicationFirstColumn *= numbers[i, numberFirstColumn];
+            multiplicationUserColumn *= numbers[i, userColumn];
         }
 
-        Console.WriteLine($"Произведение первого столбца: {multiplicationFirstColumn}");
+        userColumn++;
+
+        Console.WriteLine($"Произведение {userColumn} столбца: {multiplicationUserColumn}");
     }
 }
