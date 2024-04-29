@@ -8,6 +8,7 @@ internal class Program
         int maximalRandomNumber = 10;
         int arrayLength = 30;
         int firstNumberIndex = 0;
+        int secondNumberIndex = 1;
         int lastNumberIndex = arrayLength - 1;
         int neighbourStep = 1;
 
@@ -27,28 +28,22 @@ internal class Program
 
         Console.Write("\n\nЛокальные максимумы: ");
 
-        for (int i = 0; i < arrayLength; i++)
+        if (numbers[firstNumberIndex] > numbers[firstNumberIndex + neighbourStep])
         {
-            if (i == firstNumberIndex)
-            {
-                if (numbers[i] > numbers[i + neighbourStep])
-                {
-                    Console.Write($"{numbers[i]} ");
-                }
-            }
+            Console.Write($"{numbers[firstNumberIndex]} ");
+        }
 
-            else if (i == lastNumberIndex)
-            {
-                if (numbers[i] > numbers[i - neighbourStep])
-                {
-                    Console.Write($"{numbers[i]} ");
-                }
-            }
-
-            else if (numbers[i] > numbers[i + neighbourStep] && numbers[i] > numbers[i - neighbourStep])
+        for (int i = secondNumberIndex; i < lastNumberIndex; i++)
+        {
+            if (numbers[i] > numbers[i + neighbourStep] && numbers[i] > numbers[i - neighbourStep])
             {
                 Console.Write($"{numbers[i]} ");
             }
+        }
+
+        if (numbers[lastNumberIndex] > numbers[lastNumberIndex - neighbourStep])
+        {
+            Console.Write($"{numbers[lastNumberIndex]} ");
         }
     }
 }
