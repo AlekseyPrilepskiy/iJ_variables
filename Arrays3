@@ -1,0 +1,54 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Random number = new Random();
+
+        int minimalRandomNumber = 0;
+        int maximalRandomNumber = 10;
+        int arrayLength = 30;
+        int firstNumberIndex = 0;
+        int lastNumberIndex = arrayLength - 1;
+        int neighbourStep = 1;
+
+        int[] numbers = new int[arrayLength];
+
+        for (int i = 0; i < arrayLength; i++)
+        {
+            numbers[i] = number.Next(minimalRandomNumber, maximalRandomNumber);
+        }
+
+        Console.WriteLine("Исходный массив: ");
+
+        foreach (int digit in numbers)
+        {
+            Console.Write($"|{digit}|");
+        }
+
+        Console.Write("\n\nЛокальные максимумы: ");
+
+        for (int i = 0; i < arrayLength; i++)
+        {
+            if (i == firstNumberIndex)
+            {
+                if (numbers[i] > numbers[i + neighbourStep])
+                {
+                    Console.Write($"{numbers[i]} ");
+                }
+            }
+
+            else if (i == lastNumberIndex)
+            {
+                if (numbers[i] > numbers[i - neighbourStep])
+                {
+                    Console.Write($"{numbers[i]} ");
+                }
+            }
+
+            else if (numbers[i] > numbers[i + neighbourStep] && numbers[i] > numbers[i - neighbourStep])
+            {
+                Console.Write($"{numbers[i]} ");
+            }
+        }
+    }
+}
