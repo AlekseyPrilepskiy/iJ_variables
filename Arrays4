@@ -44,10 +44,10 @@ internal class Program
                     break;
 
                 default:
-                    int[] tempNumbers = new int[numbers.Length + 1];
-
                     if (int.TryParse(userCommand, out userNumber))
                     {
+                        int[] tempNumbers = new int[numbers.Length + 1];
+
                         for (int i = 0; i < numbers.Length; i++)
                         {
                             tempNumbers[i] = numbers[i];
