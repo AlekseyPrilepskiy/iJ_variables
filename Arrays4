@@ -1,0 +1,71 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        const string CommandSum = "sum";
+        const string CommandExit = "exit";
+
+        int[] numbers = new int[0];
+
+        int sum = 0;
+        int userNumber;
+        int arrayExpansionStep = 1;
+
+        string userCommand;
+
+        bool isWork = true;
+
+        while (isWork)
+        {
+            int[] tempNumbers = new int[numbers.Length + arrayExpansionStep];
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.Write($"|{numbers[i]}|");
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Введите число или комманду.");
+            Console.WriteLine($"{CommandSum} - Сумма всех введенных чисел.");
+            Console.WriteLine($"{CommandExit} - Выход из программы.\n");
+
+            userCommand = Console.ReadLine();
+
+            switch (userCommand)
+            {
+                case CommandSum:
+                    sum = numbers.Sum();
+
+                    Console.WriteLine($"\nСумма чисел: {sum}\n");
+                    break;
+
+                case CommandExit:
+                    Console.WriteLine("\nВыход из программы.");
+
+                    isWork = false;
+                    break;
+
+                default:
+                    if (int.TryParse(userCommand, out userNumber))
+                    {
+                        userNumber = Convert.ToInt32(userCommand);
+
+                        for (int i = 0; i < numbers.Length; i++)
+                        {
+                            tempNumbers[i] = numbers[i];
+                        }
+
+                        tempNumbers[tempNumbers.Length - arrayExpansionStep] = userNumber;
+
+                        numbers = tempNumbers;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка! Введите число или комманду: \n");
+                    }
+                    break;
+            }
+        }
+    }
+}
