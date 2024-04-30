@@ -9,7 +9,6 @@ internal class Program
 
         int sum = 0;
         int userNumber;
-        int arrayExpansionStep = 1;
 
         string userCommand;
 
@@ -17,8 +16,6 @@ internal class Program
 
         while (isWork)
         {
-            int[] tempNumbers = new int[numbers.Length + arrayExpansionStep];
-
             for (int i = 0; i < numbers.Length; i++)
             {
                 Console.Write($"|{numbers[i]}|");
@@ -47,16 +44,16 @@ internal class Program
                     break;
 
                 default:
+                    int[] tempNumbers = new int[numbers.Length + 1];
+
                     if (int.TryParse(userCommand, out userNumber))
                     {
-                        userNumber = Convert.ToInt32(userCommand);
-
                         for (int i = 0; i < numbers.Length; i++)
                         {
                             tempNumbers[i] = numbers[i];
                         }
 
-                        tempNumbers[tempNumbers.Length - arrayExpansionStep] = userNumber;
+                        tempNumbers[tempNumbers.Length - 1] = userNumber;
 
                         numbers = tempNumbers;
                     }
